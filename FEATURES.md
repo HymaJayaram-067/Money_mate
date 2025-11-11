@@ -73,7 +73,37 @@ Visual representation of spending by category with percentages
 **Trend Analysis:**
 Compare spending across different months
 
-### 5. Responsive Design
+### 5. AI Receipt Scanning
+
+Extract expense details from receipt text automatically:
+
+- **Smart Text Parsing**: Analyzes receipt text to extract merchant, amount, and date
+- **Pattern Recognition**: Identifies key information from various receipt formats
+- **Quick Entry**: Paste receipt text and let AI do the work
+- **Auto-Save**: Extracted data can be saved directly as an expense
+
+**Example:**
+```
+Input Receipt Text:
+Starbucks Coffee
+Grande Latte - $5.50
+Total: $5.50
+Thank you!
+
+AI Extracts:
+→ Description: "Starbucks Coffee"
+→ Amount: $5.50
+→ Category: Food (auto-categorized)
+→ Ready to save!
+```
+
+**How it works:**
+1. Paste or type receipt text
+2. Click "Scan Receipt"
+3. AI extracts details in ~1.5 seconds
+4. Review and save as expense
+
+### 6. Responsive Design
 
 - **Mobile Friendly**: Works on phones, tablets, and desktops
 - **Modern UI**: Clean, gradient-based design
@@ -96,6 +126,7 @@ Compare spending across different months
 
 3. **AI Processing**
    - Keyword-based categorization
+   - Receipt text extraction and parsing
    - Spending pattern analysis
    - Insight generation algorithms
 
@@ -146,7 +177,14 @@ Track business expenses, categorize for tax purposes, monitor project costs.
 - AI insights list
 - Category breakdown bars
 
-### 3. Expense List Card
+### 3. Receipt Scanner Card
+- Text input area for receipt data
+- AI scanning button with loading state
+- Extracted data preview
+- Quick save functionality
+- Tips for optimal scanning
+
+### 4. Expense List Card
 - Scrollable list
 - Each item shows:
   - Description and category badge
@@ -154,7 +192,7 @@ Track business expenses, categorize for tax purposes, monitor project costs.
   - Amount prominently displayed
   - Delete button
 
-### 4. Budget Manager Card
+### 5. Budget Manager Card
 - Add budget button
 - Budget creation form
 - Budget items with:
@@ -192,10 +230,19 @@ Track business expenses, categorize for tax purposes, monitor project costs.
 5. Check category breakdown
 6. Analyze trends
 
+### Scanning a Receipt
+1. Paste receipt text into scanner
+2. Click "Scan Receipt"
+3. AI extracts details (~1.5s)
+4. Review extracted data
+5. Click "Save as Expense"
+6. Auto-categorized and added to list
+7. Dashboard updates instantly
+
 ## 🌟 What Makes MoneyMate Special
 
 1. **Simple & Intuitive**: No complex setup, start tracking immediately
-2. **AI-Powered**: Smart categorization and insights
+2. **AI-Powered**: Smart categorization, receipt scanning, and insights
 3. **Educational**: Learn about spending habits
 4. **Customizable**: Set your own budgets and categories
 5. **Open Source**: Free to use and modify
@@ -205,7 +252,7 @@ Track business expenses, categorize for tax purposes, monitor project costs.
 ## 📈 Future Enhancements (Potential)
 
 - Multi-user support with authentication
-- Receipt OCR scanning
+- Advanced OCR with image upload
 - Export to CSV/PDF
 - Investment tracking
 - Savings goals

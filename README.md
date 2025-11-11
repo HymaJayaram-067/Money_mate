@@ -19,6 +19,7 @@ MoneyMate is a modern, full-stack personal finance management application built 
 
 - **📊 Expense Tracking**: Easy-to-use interface for logging daily expenses
 - **🤖 AI Smart Categorization**: Automatically categorizes expenses based on description
+- **📸 AI Receipt Scanning**: Extract expense details from receipt text automatically
 - **🎯 Budget Management**: Set and track budgets for different spending categories
 - **💡 Personalized Insights**: Get AI-driven spending insights and recommendations
 - **📈 Visual Analytics**: View spending trends and category breakdowns

@@ -8,7 +8,7 @@ MoneyMate is a complete, production-ready personal finance management applicatio
 
 ✅ **Simple & Easy to Learn**: Clean code structure, well-documented
 ✅ **Full-Stack Application**: Complete frontend and backend implementation
-✅ **AI-Powered**: Smart categorization and insights generation
+✅ **AI-Powered**: Smart categorization, receipt scanning, and insights generation
 ✅ **Deployable**: Multiple deployment options (Docker, VPS, cloud platforms)
 ✅ **Production-Ready Structure**: Following best practices
 ✅ **Well-Documented**: Comprehensive guides and documentation
@@ -17,20 +17,21 @@ MoneyMate is a complete, production-ready personal finance management applicatio
 
 ### Code Files
 - **Backend**: 9 JavaScript files
-- **Frontend**: 7 JavaScript/JSX files
+- **Frontend**: 8 JavaScript/JSX files
 - **Configuration**: 6 config files
 - **Documentation**: 8 markdown files
 
 ### Total Lines of Code
 - **Backend**: ~500 lines
-- **Frontend**: ~600 lines
+- **Frontend**: ~1100 lines
 - **Documentation**: ~1500 lines
-- **Total**: ~2600+ lines
+- **Total**: ~3100+ lines
 
 ### Features Implemented
 - ✅ 15+ API endpoints
 - ✅ 8+ expense categories
 - ✅ AI categorization engine
+- ✅ AI receipt scanning
 - ✅ Budget tracking system
 - ✅ Insights dashboard
 - ✅ Responsive UI components
@@ -75,7 +76,8 @@ Money_mate/
 │   │   │   ├── ExpenseForm.js     # Add expenses
 │   │   │   ├── ExpenseList.js     # View expenses
 │   │   │   ├── Dashboard.js       # Insights view
-│   │   │   └── BudgetManager.js   # Budget management
+│   │   │   ├── BudgetManager.js   # Budget management
+│   │   │   └── ReceiptScanner.js  # Receipt scanning
 │   │   ├── services/
 │   │   │   └── api.js             # API client
 │   │   ├── App.js                 # Main component
@@ -133,14 +135,21 @@ Money_mate/
 - 85-90% accuracy
 - Extensible system
 
-### 3. Budget Tracking
+### 3. Receipt Scanning
+- AI-powered text parsing
+- Extract merchant, amount, and date
+- Pattern recognition for various formats
+- Quick expense entry
+- Auto-categorization of scanned items
+
+### 4. Budget Tracking
 - Set category budgets
 - Multiple time periods
 - Visual progress bars
 - Alert thresholds
 - Over-budget warnings
 
-### 4. Insights Dashboard
+### 5. Insights Dashboard
 - Total spending calculation
 - Transaction count
 - Average expense
@@ -149,7 +158,7 @@ Money_mate/
 - AI-generated tips
 - Trend analysis
 
-### 5. Responsive Design
+### 6. Responsive Design
 - Mobile-friendly
 - Gradient UI
 - Real-time updates
@@ -165,6 +174,19 @@ Output: Category = "Food"
 Accuracy: 85-90%
 Categories: 8
 Keywords: 70+
+```
+
+### Receipt Scanning
+```javascript
+Input Receipt Text:
+"Starbucks Coffee
+Grande Latte - $5.50
+Total: $5.50"
+
+Output:
+Description: "Starbucks Coffee"
+Amount: $5.50
+Category: "Food" (auto-categorized)
 ```
 
 ### Insight Generation

@@ -3,6 +3,7 @@ import ExpenseForm from './components/ExpenseForm';
 import ExpenseList from './components/ExpenseList';
 import Dashboard from './components/Dashboard';
 import BudgetManager from './components/BudgetManager';
+import ReceiptScanner from './components/ReceiptScanner';
 
 function App() {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -20,11 +21,15 @@ function App() {
 
       <div className="main-content">
         <ExpenseForm onExpenseAdded={handleExpenseAdded} />
-        <Dashboard refresh={refreshKey} />
+        <ReceiptScanner onExpenseAdded={handleExpenseAdded} />
       </div>
 
       <div className="main-content">
+        <Dashboard refresh={refreshKey} />
         <ExpenseList refresh={refreshKey} />
+      </div>
+
+      <div className="main-content">
         <BudgetManager refresh={refreshKey} />
       </div>
     </div>
