@@ -2,6 +2,19 @@
 
 MoneyMate is a modern, full-stack personal finance management application built with React, Node.js, Express, and MongoDB. It helps you track expenses, manage budgets, and get AI-powered insights into your spending habits.
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Node](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen.svg)
+![React](https://img.shields.io/badge/react-18.2.0-blue.svg)
+
+## 📚 Documentation
+
+- **[Getting Started Guide](GETTING_STARTED.md)** - Step-by-step setup instructions
+- **[Features Overview](FEATURES.md)** - Detailed feature descriptions
+- **[API Documentation](API.md)** - Complete API reference
+- **[Deployment Guide](DEPLOYMENT.md)** - Deploy to various platforms
+- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
+- **[Security Considerations](SECURITY.md)** - Security best practices
+
 ## ✨ Features
 
 - **📊 Expense Tracking**: Easy-to-use interface for logging daily expenses
@@ -246,7 +259,7 @@ Edit the category list in:
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -257,6 +270,20 @@ This project is licensed under the MIT License.
 ## 📧 Support
 
 For issues or questions, please open an issue on GitHub.
+
+## 🎓 Learning Resources
+
+This project demonstrates:
+- ✅ Full-stack JavaScript development
+- ✅ RESTful API design
+- ✅ React hooks and functional components
+- ✅ MongoDB database design
+- ✅ AI/ML basics (categorization and insights)
+- ✅ Responsive web design
+- ✅ Docker containerization
+- ✅ Environment configuration
+
+Perfect for learning modern web development!
 
 ---
 
