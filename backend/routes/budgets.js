@@ -51,6 +51,7 @@ router.get('/status', async (req, res) => {
       const percentUsed = (spent / budget.limit) * 100;
       
       return {
+        _id: budget._id,
         category: budget.category,
         limit: budget.limit,
         spent,
