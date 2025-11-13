@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getBudgetStatus, createBudget, deleteBudget } from '../services/api';
+import { getBudgetStatus, createBudget, deleteBudget, updateBudget } from '../services/api';
 
 const BudgetManager = ({ refresh }) => {
   const [budgets, setBudgets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [editingBudget, setEditingBudget] = useState(null);
   const [formData, setFormData] = useState({
     category: 'Food',
     limit: '',
@@ -34,10 +35,19 @@ const BudgetManager = ({ refresh }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createBudget({
-        ...formData,
-        limit: parseFloat(formData.limit)
-      });
+      if (editingBudget) {
+        // Update existing budget
+        await updateBudget(editingBudget._id, {
+          ...formData,
+          limit: parseFloat(formData.limit)
+        });
+      } else {
+        // Create new budget
+        await createBudget({
+          ...formData,
+          limit: parseFloat(formData.limit)
+        });
+      }
       setFormData({
         category: 'Food',
         limit: '',
@@ -46,11 +56,36 @@ const BudgetManager = ({ refresh }) => {
         alertThreshold: 80
       });
       setShowForm(false);
+      setEditingBudget(null);
       fetchBudgets();
     } catch (error) {
-      console.error('Error creating budget:', error);
-      alert('Failed to create budget. Category might already exist.');
+      console.error('Error saving budget:', error);
+      alert(editingBudget ? 'Failed to update budget.' : 'Failed to create budget. Category might already exist.');
     }
+  };
+
+  const handleEdit = (budget) => {
+    setEditingBudget(budget);
+    setFormData({
+      category: budget.category,
+      limit: budget.limit,
+      period: budget.period,
+      alert: budget.alert !== undefined ? budget.alert : true,
+      alertThreshold: budget.alertThreshold || 80
+    });
+    setShowForm(true);
+  };
+
+  const handleCancel = () => {
+    setShowForm(false);
+    setEditingBudget(null);
+    setFormData({
+      category: 'Food',
+      limit: '',
+      period: 'monthly',
+      alert: true,
+      alertThreshold: 80
+    });
   };
 
   const handleDelete = async (category) => {
@@ -77,7 +112,15 @@ const BudgetManager = ({ refresh }) => {
         <h2>🎯 Budget Tracker</h2>
         <button 
           className="btn" 
-          onClick={() => setShowForm(!showForm)}
+          onClick={() => {
+            if (showForm && !editingBudget) {
+              handleCancel();
+            } else if (!showForm) {
+              setShowForm(true);
+            } else {
+              handleCancel();
+            }
+          }}
           style={{ padding: '8px 20px', fontSize: '0.9rem' }}
         >
           {showForm ? 'Cancel' : '+ Add Budget'}
@@ -86,17 +129,20 @@ const BudgetManager = ({ refresh }) => {
 
       {showForm && (
         <form onSubmit={handleSubmit} style={{ marginBottom: '20px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
+          <h3 style={{ marginTop: '0', marginBottom: '15px' }}>{editingBudget ? 'Edit Budget' : 'Create Budget'}</h3>
           <div className="form-group">
             <label>Category</label>
             <select
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
               required
+              disabled={editingBudget !== null}
             >
               {categories.map(cat => (
                 <option key={cat} value={cat}>{cat}</option>
               ))}
             </select>
+            {editingBudget && <small style={{ color: '#666', fontSize: '0.85rem' }}>Category cannot be changed when editing</small>}
           </div>
           <div className="form-group">
             <label>Budget Limit ($)</label>
@@ -121,7 +167,7 @@ const BudgetManager = ({ refresh }) => {
               <option value="yearly">Yearly</option>
             </select>
           </div>
-          <button type="submit" className="btn">Create Budget</button>
+          <button type="submit" className="btn">{editingBudget ? 'Update Budget' : 'Create Budget'}</button>
         </form>
       )}
 
@@ -135,9 +181,25 @@ const BudgetManager = ({ refresh }) => {
             <div key={budget.category} className="budget-item">
               <div className="budget-header">
                 <h3>{budget.category}</h3>
-                <span style={{ fontSize: '0.9rem', color: '#666' }}>
-                  {budget.period}
-                </span>
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                  <span style={{ fontSize: '0.9rem', color: '#666' }}>
+                    {budget.period}
+                  </span>
+                  <button 
+                    className="btn" 
+                    onClick={() => handleEdit(budget)}
+                    style={{ padding: '5px 12px', fontSize: '0.85rem', background: '#2196F3' }}
+                  >
+                    Edit
+                  </button>
+                  <button 
+                    className="btn" 
+                    onClick={() => handleDelete(budget.category)}
+                    style={{ padding: '5px 12px', fontSize: '0.85rem', background: '#f5576c' }}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                 <span>Spent: ${budget.spent.toFixed(2)} / ${budget.limit.toFixed(2)}</span>
